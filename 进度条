@@ -1,0 +1,17 @@
+//进度条
+int main()
+{
+	char bar[101] = "\0";
+	const char* lable = "|/-\\";
+	int i = 0;
+	for (i = 0; i < 101; i++)
+	{
+		printf("[%-100s][%d%%][%c]\r", bar, i, lable[i % 4]);
+		fflush(stdout);
+		bar[i] = '#';
+		Sleep(100);
+	}
+	printf("\n");
+	system("pause");
+	return 0;
+}
