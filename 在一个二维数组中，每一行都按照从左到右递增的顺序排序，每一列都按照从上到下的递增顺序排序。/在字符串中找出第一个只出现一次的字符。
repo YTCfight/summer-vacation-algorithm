@@ -1,0 +1,30 @@
+//在字符串中找出第一个只出现一次的字符。
+//用哈希表
+char SeekOneChar(char* str)
+{
+	int hash[256] = { 0 };
+	int i = 0;
+	//在哈希表中记录每个字符出现显得次数
+	while (str[i] != '\0')
+	{
+		hash[str[i++]]++;
+	}
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (hash[str[i]] == 1)
+		{
+			return str[i];
+		}
+		i++;
+	}
+	return '\0';
+}
+int main()
+{
+	char* str = "abaccdeff";
+	char ret = SeekOneChar(str);
+	printf("%c\n", ret);
+	system("pause");
+	return 0;
+}
