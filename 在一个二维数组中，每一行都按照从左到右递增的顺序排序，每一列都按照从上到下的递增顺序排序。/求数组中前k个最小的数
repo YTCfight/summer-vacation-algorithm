@@ -1,0 +1,70 @@
+//求数组中前k个最小的数
+//Partion函数的作用:使k前面的数比他小，k后面的数比他大。
+int Partion(int arr[], int left, int right)
+{
+	int tmp = arr[left];
+	while (right > left)
+	{
+		while (right>left && arr[right] >= tmp)
+		{
+			right--;
+		}
+		if (left >= right)
+		{
+			break;
+		}
+		else
+		{
+			arr[left] = arr[right];
+		}
+		while (right>left && arr[left] <= tmp)
+		{
+			left++;
+		}
+		if (left >= right)
+		{
+			break;
+		}
+		else
+		{
+			arr[right] = arr[left];
+		}
+	}
+	arr[left] = tmp;
+	return left;
+}
+int MinOfkNumber(int arr[], int len,int input)
+{
+	int start = 0;
+	int end = len - 1;
+	int par = Partion(arr, start, end);
+	while (par != input)
+	{
+		if (par > input)
+		{
+			end = par - 1;
+			par = Partion(arr, start, end);
+		}
+		else
+		{
+			start = par + 1;
+			par = Partion(arr, start, end);
+		}
+	}
+	return par;
+}
+int main()
+{
+	int arr[] = { 3, 2, 5, 4, 9, 7, 6, 1, 8 };
+	int len = sizeof(arr) / sizeof(arr[0]);
+	int input = 0;
+	scanf("%d", &input);
+	int ret = MinOfkNumber(arr, len,input);
+	for (int i = 0; i < ret; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+	system("pause");
+	return 0;
+}
