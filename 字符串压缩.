@@ -1,0 +1,55 @@
+//字符串压缩. 
+void Compress1(char* str)
+{
+	char count = '1';
+	while (*str != '\0')
+	{
+		if (*str == *(str + 1))
+		{
+			count++;
+		}
+		else
+		{
+			if (count != '1')
+			{
+				printf("%c", count);
+			}
+			printf("%c", *str);
+			count = '1';
+		}
+		str++;
+	}
+}
+char* Compress(char* str)
+{
+	char count = '1';
+	int p = 0;
+	int q = 0;
+	while (str[p] != '\0')
+	{
+		if (str[p] == str[p + 1])
+		{
+			count++;
+		}
+		else
+		{
+			if (count != '1')
+			{
+				str[q++] = count;
+			}
+			str[q++] = str[p];
+			count = '1';
+		}
+		p++;
+	}
+	str[q] = '\0';
+	return str;
+}
+int main()
+{
+	char str[] = "xxxyyyyz";
+	char* ret=Compress(str);
+	printf("%s\n", ret);
+	system("pause");
+	return 0;
+}
