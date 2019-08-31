@@ -1,0 +1,49 @@
+//要求写一个函数，将字符串的空格替换为%20.
+char* ReplaceBlank(char* str, int len)
+{
+	char* p = str;
+	int countOfBlank= 0; //空格数量
+	int Mlen = 0; //计算原来字符串的数量
+	int i = 0;
+	while (str[i] != '\0')
+	{
+		Mlen++;
+		if (str[i] == ' ')
+		{
+			countOfBlank++;
+		}
+		i++;
+	}
+	int newlen = Mlen + countOfBlank * 2; //新字符串的数量
+	//加一是因为要加上'\0'
+	if (newlen+1 > len)
+	{
+		return NULL;
+	}
+	while (Mlen >= 0 && newlen > Mlen)
+	{
+		//遇到空格的时候
+		if (str[Mlen] == ' ')
+		{
+			str[newlen--] = '0';
+			str[newlen--] = '2';
+			str[newlen--] = '%';
+		}
+		//不是空格的时候
+		else
+		{
+			str[newlen--] = str[Mlen];
+		}
+		Mlen--;
+	}
+	return p;
+}
+int main()
+{
+	char str[30] = "abc defg yz";
+	int len =sizeof(str)/sizeof(str[0]);
+	char* ret=ReplaceBlank(str, len);
+	printf("%s\n", ret);
+	system("pause");
+	return 0;
+}
