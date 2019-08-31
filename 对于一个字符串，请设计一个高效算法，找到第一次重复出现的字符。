@@ -1,0 +1,24 @@
+/*对于一个字符串，请设计一个高效算法，找到第一次重复出现的字符。
+思路：用哈希表记录每个字符出现的次数，当发现某一个字符大于1时，直接返回。*/
+char SeekOneChar(char* str)
+{
+	int hash[256] = { 0 };
+	int i = 0;
+	while (str[i] != '\0')
+	{
+		hash[str[i]]++;
+		if (hash[str[i]] > 1)
+		{
+			return str[i];
+		}
+		i++;
+	}
+}
+int main()
+{
+	char* str = "abaccdeff";
+	char ret = SeekOneChar(str);
+	printf("%c\n", ret);
+	system("pause");
+	return 0;
+}
