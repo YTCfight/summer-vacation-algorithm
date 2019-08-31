@@ -1,0 +1,49 @@
+//删除字符串首尾的空格，中间的连续空格只保留一个，原来字符串的顺序不变。
+char* DelBlank(char* str)
+{
+	int flag = 0;
+	int p = 0;
+	int q = 0;
+	while (str[p] != '\0')
+	{
+		//一直为空格
+		if (str[p] == ' ' && flag == 0)
+		{
+			p++;
+		}
+		//由空格到字符串
+		else if (str[p] != ' ' && flag == 0)
+		{
+			str[q++] = str[p++];
+			flag = 1;
+		}
+		//一直在字符串
+		else if (str[p] != ' ' && flag == 1)
+		{
+			str[q++] = str[p++];
+		}
+		//由字符串到空格
+		else if (str[p] == ' ' &&  flag == 1)
+		{
+			str[q++] = str[p++];
+			flag = 0;
+		}
+	}
+	if (str[q - 1] == ' ')
+	{
+		str[q - 1] = '\0';
+	}
+	else
+	{
+		str[q] = '\0';
+	}
+	return str;
+}
+int main()
+{
+	char str[] = "   asd  cd  ";
+	char* ret = DelBlank(str);
+	printf("%s", ret);
+	system("pause");
+	return 0;
+}
