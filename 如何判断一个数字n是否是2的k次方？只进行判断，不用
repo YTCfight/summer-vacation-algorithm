@@ -1,0 +1,26 @@
+//如何判断一个数字n是否是2的k次方？只进行判断，不用求k
+int JudgeTwoSq1(int input)
+{
+	return (input&(input - 1))==0;
+}
+int JudgeTwoSq(int input)
+{
+	int i = 0;
+	for (i = 1; i <= input; i = (i << 1))
+	{
+		if (input == i)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+int main()
+{
+	int input = 0;
+	scanf("%d", &input);
+	int ret = JudgeTwoSq(input);
+	printf("%d\n", ret);
+	system("pause");
+	return 0;
+}
