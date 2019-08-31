@@ -1,0 +1,24 @@
+//求第n个斐波那契额数列的值（非递归）
+int Fibonacci(int input)
+{
+	int a = 1;
+	int b = 1;
+	int c = 1;
+	while (input-2)
+	{
+		c = a + b;
+		a = b;
+		b = c;
+		input--;
+	}
+	return c;
+}
+int main()
+{
+	int input = 0;
+	scanf("%d", &input);
+	int ret=Fibonacci(input);
+	printf("%d\n", ret);
+	system("pause");
+	return 0;
+}
