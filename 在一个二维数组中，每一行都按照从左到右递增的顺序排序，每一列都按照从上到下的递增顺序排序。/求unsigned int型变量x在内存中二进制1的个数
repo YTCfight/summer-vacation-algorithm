@@ -1,0 +1,20 @@
+//求unsigned int型变量x在内存中二进制1的个数
+unsigned int NumberOf1(int input)
+{
+	int count = 0;
+	while (input)
+	{
+		input = input&(input - 1);
+		count++;
+	}
+	return count;
+}
+int main()
+{
+	int input = 0;
+	scanf("%d", &input);
+	unsigned int ret = NumberOf1(input);
+	printf("%u\n", ret);
+	system("pause");
+	return 0;
+}
