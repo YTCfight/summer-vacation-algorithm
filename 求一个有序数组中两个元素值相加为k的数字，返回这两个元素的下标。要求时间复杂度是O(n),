@@ -1,0 +1,37 @@
+//求一个有序数组中两个元素值相加为k的数字，返回这两个元素的下标。要求时间复杂度是O(n),
+//空间复杂度是O(1)。
+void SeekSum(int arr[], int len, int input, int *x, int *y)
+{
+	int left = 0;
+	int right = len - 1;
+	while (left < right)
+	{
+		if (arr[left] + arr[right]>input)
+		{
+			right--;
+		}
+		else if (arr[left] + arr[right] < input)
+		{
+			left++;
+		}
+		else
+		{
+			*x = left;
+			*y = right;
+			break;
+		}
+	}
+}
+int main()
+{
+	int arr[] = { 1, 2, 3, 4, 5, 6, 7 };
+	int len = sizeof(arr) / sizeof(arr[0]);
+	int input = 0;
+	scanf("%d", &input);
+	int x = -1;
+	int y = -1;
+	SeekSum(arr, len,input,&x,&y);
+	printf("%d %d\n", x, y);
+	system("pause");
+	return 0;
+}
