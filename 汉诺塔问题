@@ -1,0 +1,40 @@
+//汉诺塔问题
+void Move(char pos1, char pos2)
+{
+	printf("%c->%c ", pos1, pos2);
+}
+/*
+n:代表盘子个数
+pos1：开始位置
+pos2:中间位置
+pos3:结束位置
+*/
+void Hanota(int n, char pos1, char pos2, char pos3)
+{
+	//终止条件
+	if (n <= 0)
+	{
+		return;
+	}
+	if (n == 1)
+	{
+		Move(pos1, pos3);
+		return;
+	}
+	//递归调用
+	else
+	{
+		Hanota(n - 1, pos1, pos3, pos2);
+		Move(pos1, pos3);
+		Hanota(n - 1, pos2, pos1, pos3);
+	}
+}
+int main()
+{
+	int input = 0;
+	scanf("%d", &input);
+	Hanota(input, 'A', 'B', 'C');
+	printf("\n"); 
+	system("pause");
+	return 0;
+}
